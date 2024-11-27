@@ -15,12 +15,17 @@ latest_version = __version__
 
 DEBUG = False
 
-# defaults and include directories
-defaults_dir = os.environ['SAMNTDIR'] + "/api/api_autogen/library/defaults/"
-includepath = os.environ['SAMNTDIR'] + "/api/include"
-srcpath = os.environ['SAMNTDIR'] + "/api/src"
+# Provide default values for environment variables
+# If 'SAMNTDIR' is not set, use the current directory as the base (or any other suitable default)
+default_samntdir = "/pysam"  # Update this to an appropriate path if necessary
 
-this_directory = os.environ['PYSAMDIR']
+# defaults and include directories
+defaults_dir = os.environ.get('SAMNTDIR', default_samntdir) + "/api/api_autogen/library/defaults/"
+includepath = os.environ.get('SAMNTDIR', default_samntdir) + "/api/include"
+srcpath = os.environ.get('SAMNTDIR', default_samntdir) + "/api/src"
+
+# Set 'PYSAMDIR' default if it's not set
+this_directory = os.environ.get('PYSAMDIR', default_samntdir)
 libpath = this_directory + "/files"
 
 
